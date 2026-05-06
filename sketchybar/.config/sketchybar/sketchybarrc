@@ -1,0 +1,223 @@
+#!/usr/bin/env bash
+
+CONFIG_DIR="${CONFIG_DIR:-$HOME/.config/sketchybar}"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+#########################################
+#  SAKURA MIKU – Grouped Pill Theme     #
+#########################################
+
+# --- Color Palette (Strawberry Milk) ---
+BAR_TRANSPARENT="0x00000000"
+PILL_BG="0xdd2a2734"
+PILL_BORDER="0x80ffb7b2"
+SAKURA_PRIMARY="0xffffb7b2"
+SAKURA_MUTED="0xffe2c3c6"
+HOT_PINK="0xffff8fa3"
+TEXT_MAIN="0xffe0def4"
+TEXT_DIM="0xff908caa"
+
+##############################
+#  Bar Configuration         #
+##############################
+
+sketchybar --bar position=top \
+  height=36 \
+  color=$BAR_TRANSPARENT \
+  shadow=off \
+  sticky=on \
+  padding_left=10 \
+  padding_right=10 \
+  corner_radius=0 \
+  border_width=0 \
+  y_offset=4
+
+################################
+#  Global Item Defaults        #
+################################
+
+# We stripped all background properties out of the default block.
+# Items are now completely transparent by themselves.
+default=(
+  icon.font="JetBrainsMono Nerd Font:Bold:16.0"
+  label.font="JetBrainsMono Nerd Font:Medium:13.0"
+
+  icon.color=$SAKURA_PRIMARY
+  label.color=$TEXT_MAIN
+
+  # Internal spacing between items
+  icon.padding_left=6
+  icon.padding_right=6
+  label.padding_left=6
+  label.padding_right=6
+)
+
+sketchybar --default "${default[@]}"
+
+################################
+#  LEFT: Spaces & App          #
+################################
+
+# --- Power Menu (Headphone Logo) ---
+sketchybar --add item logo left \
+  --set logo icon="" \
+  icon.font="JetBrainsMono Nerd Font:Bold:22.0" \
+  icon.color=$HOT_PINK \
+  icon.padding_left=12 \
+  icon.padding_right=12 \
+  icon.y_offset=-2 \
+  label.drawing=off \
+  click_script="sketchybar --set logo popup.drawing=toggle" \
+  popup.background.color=0xdd1A161E \
+  popup.background.border_color=0xffFFB7B2 \
+  popup.background.border_width=2 \
+  popup.background.corner_radius=12 \
+  popup.background.shadow.drawing=on \
+  popup.background.blur_radius=20
+
+# Clean Helper for the dropdown items
+draw_menu_item() {
+  sketchybar --add item $1 popup.logo \
+    --set $1 icon=$2 \
+    icon.color=0xffFFB7B2 \
+    icon.padding_left=10 \
+    label="$3" \
+    label.color=0xffF4EDEA \
+    label.padding_right=15 \
+    click_script="$4; sketchybar --set logo popup.drawing=off"
+}
+
+# Add dropdown options (Only once!)
+draw_menu_item logo.sleep "󰒲" "Sleep" "osascript -e 'tell application \"System Events\" to sleep'"
+draw_menu_item logo.restart "󰜉" "Restart" "osascript -e 'tell application \"System Events\" to restart'"
+draw_menu_item logo.shutdown "󰐥" "Shut Down" "osascript -e 'tell application \"System Events\" to shut down'"
+draw_menu_item logo.logout "󰗽" "Log Out" "osascript -e 'tell application \"System Events\" to log out'"
+draw_menu_item logo.lock "󰌾" "Lock Screen" "pmset displaysleepnow"
+
+sketchybar --add event menu_close \
+  --subscribe logo mouse.exited.global \
+  --set logo script="sketchybar --set \$NAME popup.drawing=off"
+
+SPACE_ICONS=("一" "二" "三" "四" "五")
+
+for i in "${!SPACE_ICONS[@]}"; do
+  sid=$((i + 1))
+
+  sketchybar --add space space.$sid left \
+    --set space.$sid space=$sid \
+    icon="${SPACE_ICONS[i]}" \
+    icon.color=$SAKURA_MUTED \
+    icon.highlight_color=$HOT_PINK \
+    label.drawing=off \
+    background.color=$SAKURA_MUTED \
+    background.corner_radius=8 \
+    background.height=22 \
+    background.drawing=off \
+    script="$PLUGIN_DIR/space.sh" \
+    --subscribe space.$sid space_change
+done
+
+sketchybar --add item separator left \
+  --set separator icon="~" \
+  icon.color=$TEXT_DIM \
+  label.drawing=off
+
+# Re-adding the window_focus event so the title script works
+sketchybar --add event window_focus
+
+sketchybar --add item front_app left \
+  --set front_app icon="❯" \
+  icon.color=$HOT_PINK \
+  icon.font="JetBrainsMono Nerd Font:Bold:14.0" \
+  label.color=$SAKURA_PRIMARY \
+  label.font="JetBrainsMono Nerd Font:Bold:14.0" \
+  label.max_chars=40 \
+  scroll_texts=on \
+  label.scroll_duration=150 \
+  padding_right=12 \
+  script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched window_focus
+
+################################
+#  RIGHT: System Monitors      #
+################################
+
+# 1. Clock (Furthest Right)
+sketchybar --add item clock right \
+  --set clock update_freq=10 \
+  icon="󱑂" \
+  icon.color=0xff89DCEB \
+  label.color=0xffF4EDEA \
+  script="$PLUGIN_DIR/clock.sh" \
+  click_script="open -a 'Firefox' https://calendar.google.com" \
+  padding_left=10 \
+  padding_right=10
+
+# 2. Volume
+sketchybar --add item volume right \
+  --set volume icon=󰕾 \
+  icon.color=$SAKURA_MUTED \
+  script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change
+
+# 3. Battery
+sketchybar --add item battery right \
+  --set battery icon=󰁹 \
+  icon.color=$HOT_PINK \
+  update_freq=60 \
+  script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
+
+# 4. RAM
+sketchybar --add item ram right \
+  --set ram icon=󰘚 \
+  icon.color=$SAKURA_MUTED \
+  update_freq=5 \
+  click_script='open -a "Activity Monitor"' \
+  script="$PLUGIN_DIR/ram.sh"
+
+# 5. CPU (Padding removed, it's no longer the edge)
+sketchybar --add item cpu right \
+  --set cpu icon=󰻠 \
+  icon.color=$SAKURA_PRIMARY \
+  update_freq=2 \
+  click_script='open -a "Activity Monitor"' \
+  script="$PLUGIN_DIR/cpu.sh"
+
+# --- Media Player (Polling Mode) ---
+sketchybar --add item media right \
+  --set media icon=󰝚 \
+  icon.color=$HOT_PINK \
+  label.color=$SAKURA_PRIMARY \
+  label.max_chars=15 \
+  scroll_texts=on \
+  padding_left=12 \
+  label.scroll_duration=150 \
+  update_freq=2 \
+  script="$PLUGIN_DIR/media.sh" \
+  click_script="open -a 'YouTube Music'"
+
+################################
+#  BRACKETS (The Big Pills)    #
+################################
+
+sketchybar --add bracket left_pill logo menu_icon front_menu '/space\..*/' separator front_app \
+  --set left_pill background.color=$PILL_BG \
+  background.corner_radius=14 \
+  background.height=28 \
+  background.border_width=1 \
+  background.border_color=$PILL_BORDER
+
+# Updated right_pill to include the media module
+sketchybar --add bracket right_pill media cpu ram battery volume clock \
+  --set right_pill background.color=$PILL_BG \
+  background.corner_radius=14 \
+  background.height=28 \
+  background.border_width=1 \
+  background.border_color=$PILL_BORDER
+
+#################
+#  Final launch #
+#################
+
+sketchybar --update
