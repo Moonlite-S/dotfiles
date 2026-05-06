@@ -2,6 +2,8 @@
 
 My custom dotfiles, named Sakura Miku, a pastel pink themed rice configuration.
 
+Oh, also, this is my first rice, and a lot of the code was AI generated.
+
 ## Files
 
 - **OS**: MacOS
