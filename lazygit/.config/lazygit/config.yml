@@ -15,3 +15,11 @@ gui:
       - '#ffb3c1'
     unstagedChangesColor:
       - '#ff5f7e' # Reddish-Pink
+git:
+  pagers:
+    - pager: 'delta --dark --paging=never --minus-style="syntax #5a3138"
+        --minus-emph-style="syntax #824d57" --plus-style="syntax #2d453a"
+        --plus-emph-style="syntax #486b5b" --line-numbers
+        --line-numbers-minus-style="#ffb3c1" --line-numbers-plus-style="#b4e1c1"
+        --hyperlinks
+        --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"'
