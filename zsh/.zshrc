@@ -30,7 +30,7 @@ alias v="nvim"
 # alias ll="ls -lah"
 alias ls="eza --color=auto --icons=auto"
 alias tmux="tmux -u" # Force UTF-8 for those Powerline characters
-alias reload="source ~/.zshrc"
+alias reload="exec zsh"
 alias python="python3"
 
 # Sketchybar & Yabai shortcuts
@@ -70,6 +70,15 @@ fi
 if [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+# EDITOR=nvim contains "vi" so zsh auto-enables vi keybindings — override it.
+bindkey -e
+
+# Reset cursor to steady block after every command so programs that leave a
+# beam cursor (fzf, less, bat, delta…) don't pollute the prompt.
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _reset_cursor_shape
+_reset_cursor_shape() { printf '\e[2 q' }
 
 # Load private local configurations if they exist
 if [[ -f ~/.zshrc.local ]]; then
