@@ -13,7 +13,7 @@ fi
 
 # 2. Install Core Dependencies
 echo "Installing terminal utilities and core packages..."
-brew install stow jq starship lazygit git-delta
+brew install stow jq starship lazygit git-delta eza xoxide
 brew install zsh-autosuggestions zsh-syntax-highlighting
 
 # 3. Tap and Install Custom macOS Tools

@@ -36,6 +36,23 @@ return {
 
         -- Override comments to be slightly more readable against the dark BG
         hl.Comment = { fg = "#7A738C", italic = true }
+
+        -- Snacks Picker / Explorer
+        -- Borders & titles: setting the base groups cascades to list/input/preview sub-windows
+        hl.SnacksPicker = { bg = "#1C1020" }
+        hl.SnacksPickerBorder = { fg = c.magenta }
+        hl.SnacksPickerTitle = { fg = c.bg_dark, bg = c.magenta }
+        hl.SnacksPickerFooter = { fg = c.magenta }
+        -- Fuzzy match characters and the > prompt
+        hl.SnacksPickerMatch = { fg = c.purple, bold = true }
+        hl.SnacksPickerPrompt = { fg = c.magenta }
+        -- Selected marker (shown on multi-selected items)
+        hl.SnacksPickerSelected = { fg = c.purple, bold = true }
+        -- Cursor line in the results list (subtle dark-rose tint)
+        hl.SnacksPickerListCursorLine = { bg = "#261A24" }
+        -- Explorer: directory basenames in Miku teal, tree connectors in dim plum
+        hl.SnacksPickerDirectory = { fg = c.cyan }
+        hl.SnacksPickerTree = { fg = "#4A3848" }
       end,
     },
   },

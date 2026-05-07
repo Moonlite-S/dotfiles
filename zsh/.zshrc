@@ -25,8 +25,9 @@ setopt hist_reduce_blanks
 alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
-alias ls="ls --color=auto"
-alias ll="ls -lah"
+# alias ls="ls --color=auto"
+# alias ll="ls -lah"
+alias ls="eza --color=auto --icons=auto"
 alias tmux="tmux -u" # Force UTF-8 for those Powerline characters
 alias reload="source ~/.zshrc"
 alias python="python3"
