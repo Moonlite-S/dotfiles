@@ -1,6 +1,6 @@
 # dotfiles
 
-My custom dotfiles, a pastel pink themed rice configuration. Might have branches that have different themes.
+My custom dotfiles, a pastel pink themed rice configuration. Might have branches that have different themes. Also most of this was AI generated since this was my first rice.
 
 ## Files
 
