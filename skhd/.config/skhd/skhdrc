@@ -44,7 +44,7 @@ lalt - f : yabai -m window --toggle zoom-parent
 # Equalize size of windows: ctrl + lalt - e
 ctrl + lalt - e : yabai -m space --balance
 
-# 
+#
 # Spaces
 #
 
@@ -103,6 +103,9 @@ lalt - u : yabai -m window --toggle float && yabai -m window --toggle float
 cmd - q [
   "Finder" : yabai -m window --close
 ]
+
+# Need soemthing to stop this keybind from hidning
+cmd - m : yabai -m window --focus recent
 
 # stop/start/restart yabai
 ctrl + alt - q : yabai --stop-service
