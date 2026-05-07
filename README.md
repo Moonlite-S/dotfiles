@@ -17,7 +17,7 @@ My custom dotfiles, a pastel pink themed rice configuration. Might have branches
 
 ![SS2](.screenshots/ss2.png)
 
-## > [!CAUTION]
+> [!CAUTION]
 > Make sure to remove the top menu. There's the setting in System Settings that hides it unless hovered.
 > There should be a command in `yabairc` that should hide it.
 >
