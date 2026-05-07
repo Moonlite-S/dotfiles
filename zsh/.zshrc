@@ -75,4 +75,6 @@ if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
 fi
 
+eval "$(zoxide init zsh)"
+
 export PATH="$HOME/.local/bin:$PATH"
