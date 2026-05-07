@@ -1,6 +1,6 @@
 # dotfiles
 
-My custom dotfiles, named Sakura Miku, a pastel pink themed rice configuration.
+My custom dotfiles, a pastel pink themed rice configuration. Might have branches that have different themes.
 
 ## Files
 
@@ -24,3 +24,13 @@ My custom dotfiles, named Sakura Miku, a pastel pink themed rice configuration.
 > `yabai -m config menubar_opacity 0.0`
 >
 > If that doesn't work, you have to make sure you follow yabai's installation that include disabling SIP.
+
+## Installation
+
+Clone this repo.
+
+The `install.sh` script uses `stow` to link my configs to their respective `.configs`. 
+
+After running it, if you want to edit the configs, you'd have to edit the files in the repo.
+
+Have fun~! <3
