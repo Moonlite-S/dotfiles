@@ -13,9 +13,8 @@ fi
 
 # 2. Install Core Dependencies
 echo "Installing terminal utilities and core packages..."
-brew install stow jq starship cava
+brew install stow jq starship lazygit
 brew install zsh-autosuggestions zsh-syntax-highlighting
-brew install --cask background-music
 
 # 3. Tap and Install Custom macOS Tools
 echo "Installing Yabai, Skhd, and SketchyBar..."
@@ -26,8 +25,13 @@ brew install sketchybar
 
 # 4. Deploy Dotfiles with Stow
 echo "Stowing configurations into the home directory..."
-cd ~/dotfiles
-stow kitty nvim sketchybar skhd starship tmux yabai zsh
+cd ~/dotfiles ||
+  {
+    echo "The folder does not exist, exiting..."
+    exit
+  }
+
+stow kitty nvim sketchybar skhd starship tmux yabai zsh lazygit
 
 # 5. Start Services
 echo "Starting background services..."
