@@ -28,7 +28,7 @@ shift + cmd - j : yabai -m window --swap south
 shift + cmd - k : yabai -m window --swap north
 shift + cmd - h : yabai -m window --swap west
 shift + cmd - l : yabai -m window --swap east
-
+ 
 # Resize windows: ctrl + lalt 
 ctrl + lalt - u : yabai -m window --resize right:-100:0 || yabai -m window --resize left:-100:0
 ctrl + lalt - i : yabai -m window --resize bottom:0:100 || yabai -m window --resize top:0:100

@@ -29,6 +29,7 @@ alias ls="ls --color=auto"
 alias ll="ls -lah"
 alias tmux="tmux -u" # Force UTF-8 for those Powerline characters
 alias reload="source ~/.zshrc"
+alias python="python3"
 
 # Sketchybar & Yabai shortcuts
 alias sreload="sketchybar --reload"
@@ -67,4 +68,10 @@ fi
 if [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+# Load private local configurations if they exist
+if [[ -f ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
+
 export PATH="$HOME/.local/bin:$PATH"
