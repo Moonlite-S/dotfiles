@@ -4,7 +4,7 @@
 add_newline = true
 command_timeout = 2000
 
-format = """$env_var$os$username$hostname$kubernetes$directory$git_branch$git_status$python
+format = """$env_var$os$username$hostname$kubernetes$directory$git_branch$git_status$python$nodejs
 $character
 """
 
@@ -107,7 +107,10 @@ style = '#ffb7b2 bold'
 format = '[//](#908caa bold) [${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style) '
 
 [nodejs]
-disabled = true
+symbol = '󰎙'
+style = '#96cdfb bold'
+format = '[//](#908caa bold) [${symbol} (${version} )]($style) '
+disabled = false
 
 [ruby]
 disabled = true

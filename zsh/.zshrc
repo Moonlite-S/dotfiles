@@ -11,6 +11,7 @@ fi
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERM="xterm-256color"
+export EZA_CONFIG_DIR="$HOME/.config/eza"
 
 # -- History Settings --
 HISTFILE=~/.zsh_history

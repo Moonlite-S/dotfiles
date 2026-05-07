@@ -1,0 +1,360 @@
+# Sakura Miku — pastel pink eza theme
+# Palette mirrors kitty/nvim/tmux: #FFB7B2 pink, #89DCEB teal, #A6D189 mint,
+# #F6C177 blonde, #F28FAD cherry, #96CDFB sky, #7A738C muted plum
+
+colourful: true
+
+filekinds:
+  normal:
+    foreground: "#F4EDEA"
+  directory:
+    foreground: "#CAB8EE"
+    is_bold: true
+  symlink:
+    foreground: "#89DCEB"
+  pipe:
+    foreground: "#F6C177"
+  block_device:
+    foreground: "#F6C177"
+  char_device:
+    foreground: "#F6C177"
+  socket:
+    foreground: "#FF8FA3"
+  special:
+    foreground: "#F8B0C4"
+  executable:
+    foreground: "#A6D189"
+    is_bold: true
+  mount_point:
+    foreground: "#B5DFFD"
+
+perms:
+  user_read:
+    foreground: "#F6C177"
+    is_bold: true
+  user_write:
+    foreground: "#F28FAD"
+    is_bold: true
+  user_execute_file:
+    foreground: "#A6D189"
+    is_bold: true
+  user_execute_other:
+    foreground: "#A6D189"
+  group_read:
+    foreground: "#F6C177"
+  group_write:
+    foreground: "#F28FAD"
+  group_execute:
+    foreground: "#A6D189"
+  other_read:
+    foreground: "#7A738C"
+  other_write:
+    foreground: "#FF8FA3"
+  other_execute:
+    foreground: "#7A738C"
+  special_user_file:
+    foreground: "#F8B0C4"
+  special_other:
+    foreground: "#F8B0C4"
+  attribute:
+    foreground: "#7A738C"
+
+size:
+  major:
+    foreground: "#FFB7B2"
+  minor:
+    foreground: "#FF8FA3"
+  number_byte:
+    foreground: "#F4EDEA"
+  number_kilo:
+    foreground: "#B5DFFD"
+  number_mega:
+    foreground: "#96CDFB"
+  number_giga:
+    foreground: "#89DCEB"
+  number_huge:
+    foreground: "#FF8FA3"
+  unit_byte:
+    foreground: "#7A738C"
+  unit_kilo:
+    foreground: "#B5DFFD"
+  unit_mega:
+    foreground: "#96CDFB"
+  unit_giga:
+    foreground: "#89DCEB"
+  unit_huge:
+    foreground: "#FF8FA3"
+
+users:
+  user_you:
+    foreground: "#FFB7B2"
+    is_bold: true
+  user_root:
+    foreground: "#F28FAD"
+    is_bold: true
+  user_other:
+    foreground: "#7A738C"
+  group_yours:
+    foreground: "#F8B0C4"
+  group_other:
+    foreground: "#7A738C"
+  group_root:
+    foreground: "#F28FAD"
+
+links:
+  normal:
+    foreground: "#89DCEB"
+  multi_link_file:
+    foreground: "#F6C177"
+
+git:
+  new:
+    foreground: "#A6D189"
+  modified:
+    foreground: "#F6C177"
+  deleted:
+    foreground: "#F28FAD"
+  renamed:
+    foreground: "#96CDFB"
+  typechange:
+    foreground: "#89DCEB"
+  ignored:
+    foreground: "#7A738C"
+  conflicted:
+    foreground: "#FF8FA3"
+    is_bold: true
+
+git_repo:
+  branch_main:
+    foreground: "#FFB7B2"
+    is_bold: true
+  branch_other:
+    foreground: "#B5DFFD"
+  git_clean:
+    foreground: "#A6D189"
+  git_dirty:
+    foreground: "#F6C177"
+
+security_context:
+  colon:
+    foreground: "#7A738C"
+  user:
+    foreground: "#FFB7B2"
+  role:
+    foreground: "#F8B0C4"
+  typ:
+    foreground: "#89DCEB"
+  range:
+    foreground: "#B5DFFD"
+
+file_type:
+  image:
+    foreground: "#FFB7B2"
+  video:
+    foreground: "#FF8FA3"
+  music:
+    foreground: "#89DCEB"
+  lossless:
+    foreground: "#A6E3F4"
+  crypto:
+    foreground: "#F6C177"
+  document:
+    foreground: "#F4EDEA"
+  compressed:
+    foreground: "#F28FAD"
+  temp:
+    foreground: "#7A738C"
+  compiled:
+    foreground: "#96CDFB"
+  build:
+    foreground: "#F6C177"
+  source:
+    foreground: "#A6D189"
+
+punctuation:
+  foreground: "#7A738C"
+
+date:
+  foreground: "#F8B0C4"
+
+inode:
+  foreground: "#7A738C"
+
+blocks:
+  foreground: "#7A738C"
+
+header:
+  foreground: "#FFB7B2"
+  is_bold: true
+  is_underline: true
+
+octal:
+  foreground: "#F6C177"
+
+flags:
+  foreground: "#89DCEB"
+
+symlink_path:
+  foreground: "#89DCEB"
+
+control_char:
+  foreground: "#F28FAD"
+
+broken_symlink:
+  foreground: "#FF8FA3"
+  is_bold: true
+
+broken_path_overlay:
+  foreground: "#FF8FA3"
+
+extensions:
+  # --- JavaScript / TypeScript family → sky blue #96CDFB ---
+  ts:
+    filename:
+      foreground: "#96CDFB"
+  tsx:
+    filename:
+      foreground: "#96CDFB"
+  js:
+    filename:
+      foreground: "#96CDFB"
+  jsx:
+    filename:
+      foreground: "#96CDFB"
+  mjs:
+    filename:
+      foreground: "#96CDFB"
+  cjs:
+    filename:
+      foreground: "#96CDFB"
+  mts:
+    filename:
+      foreground: "#96CDFB"
+  cts:
+    filename:
+      foreground: "#96CDFB"
+  d.ts:
+    filename:
+      foreground: "#B5DFFD"
+
+  # --- Markup / styling → teal #89DCEB ---
+  html:
+    filename:
+      foreground: "#89DCEB"
+  htm:
+    filename:
+      foreground: "#89DCEB"
+  css:
+    filename:
+      foreground: "#89DCEB"
+  scss:
+    filename:
+      foreground: "#89DCEB"
+  sass:
+    filename:
+      foreground: "#89DCEB"
+  less:
+    filename:
+      foreground: "#89DCEB"
+  svelte:
+    filename:
+      foreground: "#89DCEB"
+  vue:
+    filename:
+      foreground: "#89DCEB"
+  svg:
+    filename:
+      foreground: "#89DCEB"
+  xml:
+    filename:
+      foreground: "#89DCEB"
+
+  # --- Config / data → pastel pink #FFB7B2 ---
+  json:
+    filename:
+      foreground: "#FFB7B2"
+  jsonc:
+    filename:
+      foreground: "#FFB7B2"
+  toml:
+    filename:
+      foreground: "#FFB7B2"
+  yaml:
+    filename:
+      foreground: "#FFB7B2"
+  yml:
+    filename:
+      foreground: "#FFB7B2"
+  env:
+    filename:
+      foreground: "#FFB7B2"
+
+  # --- Docs / text → light pink #F8B0C4 ---
+  md:
+    filename:
+      foreground: "#F8B0C4"
+  mdx:
+    filename:
+      foreground: "#F8B0C4"
+  txt:
+    filename:
+      foreground: "#F8B0C4"
+  rst:
+    filename:
+      foreground: "#F8B0C4"
+
+  # --- Shell / scripts → mint #A6D189 ---
+  sh:
+    filename:
+      foreground: "#A6D189"
+  bash:
+    filename:
+      foreground: "#A6D189"
+  zsh:
+    filename:
+      foreground: "#A6D189"
+  fish:
+    filename:
+      foreground: "#A6D189"
+  lua:
+    filename:
+      foreground: "#A6D189"
+  py:
+    filename:
+      foreground: "#A6D189"
+  rb:
+    filename:
+      foreground: "#A6D189"
+
+  # --- Systems languages → light blue #B5DFFD ---
+  go:
+    filename:
+      foreground: "#B5DFFD"
+  c:
+    filename:
+      foreground: "#B5DFFD"
+  h:
+    filename:
+      foreground: "#B5DFFD"
+  cpp:
+    filename:
+      foreground: "#B5DFFD"
+  cc:
+    filename:
+      foreground: "#B5DFFD"
+  hpp:
+    filename:
+      foreground: "#B5DFFD"
+
+  # --- Rust → cherry #F28FAD ---
+  rs:
+    filename:
+      foreground: "#F28FAD"
+
+  # --- Logs / generated → muted #7A738C ---
+  log:
+    filename:
+      foreground: "#7A738C"
+  map:
+    filename:
+      foreground: "#7A738C"
