@@ -84,21 +84,6 @@ shift + lalt - 5 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]
 shift + lalt - p : yabai -m window --space prev && yabai -m space --focus prev
 shift + lalt - n : yabai -m window --space next && yabai -m space --focus next
 
-#
-# Stacks
-#
-
-# Create Stacks
-ctrl + lalt - h : yabai -m window --stack west
-ctrl + lalt - l : yabai -m window --stack east
-
-# Move Across Stacks
-ctrl + lalt - n : yabai -m window --focus stack.next
-ctrl + lalt - p : yabai -m window --focus stack.prev
-
-# Remove Stacks (Weird Hack unfortunately)
-lalt - u : yabai -m window --toggle float && yabai -m window --toggle float
-
 # Intercept cmd + q only when Finder is active and minimize the window
 cmd - q [
   "Finder" : yabai -m window --close
