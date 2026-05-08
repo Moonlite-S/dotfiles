@@ -50,9 +50,13 @@ return {
         hl.SnacksPickerSelected = { fg = c.purple, bold = true }
         -- Cursor line in the results list (subtle dark-rose tint)
         hl.SnacksPickerListCursorLine = { bg = "#261A24" }
-        -- Explorer: directory basenames in Miku teal, tree connectors in dim plum
-        hl.SnacksPickerDirectory = { fg = c.cyan }
-        hl.SnacksPickerTree = { fg = "#4A3848" }
+        -- Explorer: directory names, parent paths, and tree structure in pastel pink tones
+        hl.SnacksPickerDirectory = { fg = c.magenta }
+        hl.SnacksPickerDir = { fg = "#7A4870" }
+        hl.SnacksPickerTree = { fg = "#6B3858" }
+        -- Explorer sidebar window title and border (list window-specific overrides)
+        hl.SnacksPickerListTitle = { fg = c.bg_dark, bg = c.magenta }
+        hl.SnacksPickerListBorder = { fg = c.magenta }
       end,
     },
   },
