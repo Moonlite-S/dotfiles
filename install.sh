@@ -13,7 +13,7 @@ fi
 
 # 2. Install Core Dependencies
 echo "Installing terminal utilities and core packages..."
-brew install stow jq starship lazygit git-delta eza xoxide
+brew install stow jq starship lazygit git-delta eza xoxide lazydocker
 brew install zsh-autosuggestions zsh-syntax-highlighting
 
 # 3. Tap and Install Custom macOS Tools
@@ -31,7 +31,7 @@ cd ~/dotfiles ||
     exit
   }
 
-stow kitty nvim sketchybar skhd starship tmux yabai zsh lazygit
+stow kitty nvim sketchybar skhd starship tmux yabai zsh lazygit lazydocker eza
 
 # 5. Start Services
 echo "Starting background services..."

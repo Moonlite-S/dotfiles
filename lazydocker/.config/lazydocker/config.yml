@@ -1,0 +1,11 @@
+gui:
+  theme:
+    activeBorderColor:
+      - '#ffb7b2' # sakura primary
+      - bold
+    inactiveBorderColor:
+      - '#9d8189'
+    selectedLineBgColor:
+      - '#5c2a38' # deep rose
+    optionsTextColor:
+      - '#b3e5fc' # light blue accent
