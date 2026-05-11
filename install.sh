@@ -33,6 +33,10 @@ cd ~/dotfiles ||
 
 stow kitty nvim sketchybar skhd starship tmux yabai zsh lazygit lazydocker eza
 
+# Installing pipx so it can install sqlit-tui
+brew install pipx
+pipx install sqlit-tui
+
 # 5. Start Services
 echo "Starting background services..."
 yabai --start-service

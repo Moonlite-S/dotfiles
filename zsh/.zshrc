@@ -32,6 +32,7 @@ alias ls="eza --color=auto --icons=auto"
 alias tmux="tmux -u" # Force UTF-8 for those Powerline characters
 alias reload="exec zsh"
 alias python="python3"
+alias cd="z"
 
 # Sketchybar & Yabai shortcuts
 alias sreload="sketchybar --reload"

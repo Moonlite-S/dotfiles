@@ -1,0 +1,45 @@
+start-directory: /Documents/projects/trinity
+
+session_name: Trinity-Dev
+
+windows:
+  - window_name: AI_Agents
+    focus: true
+    layout: even-vertical
+    panes:
+      - shell_command:
+          - claude
+        focus: true
+      - shell_command:
+          - opencode
+
+  - window_name: Frontend
+    shell_command_before:
+      - cd frontend
+    panes:
+      - shell_command:
+          - local treemux_args=$(tmux show-option -gv "@treemux-key-Tab")
+          - nvim
+
+  - window_name: Backend
+    shell_command_before:
+      - cd backend/mysite
+    panes:
+      - shell_command:
+          - local treemux_args=$(tmux show-option -gv "@treemux-key-Tab")
+          - nvim
+
+  - window_name: Database
+    panes:
+      - shell_command:
+          - sqlit
+
+  - window_name: Git
+    panes:
+      - shell_command:
+          - lazygit
+
+  - window_name: Docker
+    panes:
+      - shell_command:
+          - lazydocker

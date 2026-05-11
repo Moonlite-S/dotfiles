@@ -32,6 +32,29 @@ return {
         hl.CursorLineNr = { fg = c.magenta, bold = true }
         hl.TelescopeBorder = { fg = c.border }
         hl.NeoTreeFloatBorder = { fg = c.border }
+        -- Directory tree: root name, directory names/icons in pink
+        hl.NeoTreeRootName = { fg = c.magenta, bold = true }
+        hl.NeoTreeDirectoryName = { fg = c.magenta }
+        hl.NeoTreeDirectoryIcon = { fg = c.magenta }
+        hl.NeoTreeIndentMarker = { fg = c.fg_gutter }
+        hl.NeoTreeExpander = { fg = c.fg_gutter }
+        -- Title bar (peeking buffers): pink bg like SnacksPickerListTitle
+        hl.NeoTreeTitleBar = { fg = c.bg_dark, bg = c.magenta }
+        -- File names and cursor line
+        hl.NeoTreeFileName = { fg = c.fg }
+        hl.NeoTreeCursorLine = { bg = "#261A24" }
+        hl.NeoTreeDotfile = { fg = c.fg_gutter, italic = true }
+        hl.NeoTreeDimText = { fg = c.fg_gutter }
+        hl.NeoTreeModified = { fg = c.yellow }
+        -- Git status following the palette
+        hl.NeoTreeGitAdded = { fg = c.green }
+        hl.NeoTreeGitDeleted = { fg = c.red }
+        hl.NeoTreeGitModified = { fg = c.yellow }
+        hl.NeoTreeGitConflict = { fg = c.red, bold = true }
+        hl.NeoTreeGitIgnored = { fg = c.fg_gutter, italic = true }
+        hl.NeoTreeGitUntracked = { fg = c.cyan }
+        hl.NeoTreeGitStaged = { fg = c.green }
+        hl.NeoTreeGitRenamed = { fg = c.cyan }
         hl.WhichKeyFloat = { bg = c.bg_dark }
 
         -- Override comments to be slightly more readable against the dark BG
