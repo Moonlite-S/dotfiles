@@ -132,36 +132,36 @@ sketchybar --add event window_focus
 
 sketchybar --add item menu_btn left \
   --set menu_btn \
-    icon="󰍜" \
-    icon.color=$SAKURA_PRIMARY \
-    label.drawing=off \
-    click_script="sketchybar --set menu_btn popup.drawing=toggle" \
-    script="sketchybar --set \$NAME popup.drawing=off" \
-    popup.background.color=0xdd1A161E \
-    popup.background.border_color=$PILL_BORDER \
-    popup.background.border_width=1 \
-    popup.background.corner_radius=12 \
-    popup.background.shadow.drawing=on \
-    popup.background.blur_radius=20 \
+  icon="󰍜" \
+  icon.color=$SAKURA_PRIMARY \
+  label.drawing=off \
+  click_script="sketchybar --set menu_btn popup.drawing=toggle" \
+  script="sketchybar --set \$NAME popup.drawing=off" \
+  popup.background.color=0xdd1A161E \
+  popup.background.border_color=$PILL_BORDER \
+  popup.background.border_width=1 \
+  popup.background.corner_radius=12 \
+  popup.background.shadow.drawing=on \
+  popup.background.blur_radius=20 \
   --subscribe menu_btn mouse.exited.global
 
 for i in $(seq 1 8); do
   sketchybar --add item "menu_btn.$i" popup.menu_btn \
     --set "menu_btn.$i" \
-      icon.drawing=off \
-      label.font="JetBrainsMono Nerd Font:Medium:13.0" \
-      label.color=$TEXT_MAIN \
-      label.padding_left=14 \
-      label.padding_right=18 \
-      drawing=off \
-      click_script="$PLUGIN_DIR/menu_click.sh"
+    icon.drawing=off \
+    label.font="JetBrainsMono Nerd Font:Medium:13.0" \
+    label.color=$TEXT_MAIN \
+    label.padding_left=14 \
+    label.padding_right=18 \
+    drawing=off \
+    click_script="$PLUGIN_DIR/menu_click.sh"
 done
 
 # Hidden updater — fires menu_bar.sh on app/window switch
 sketchybar --add item menu_updater left \
   --set menu_updater \
-    drawing=off \
-    script="$PLUGIN_DIR/menu_bar.sh" \
+  drawing=off \
+  script="$PLUGIN_DIR/menu_bar.sh" \
   --subscribe menu_updater front_app_switched window_focus
 
 sketchybar --add item front_app left \
@@ -189,7 +189,7 @@ sketchybar --add item clock right \
   label.color=0xffF4EDEA \
   script="$PLUGIN_DIR/clock.sh" \
   click_script="open -a 'Firefox' https://calendar.google.com" \
-  padding_left=10 \
+  padding_left=0 \
   padding_right=10
 
 # 2. Volume
@@ -199,7 +199,16 @@ sketchybar --add item volume right \
   script="$PLUGIN_DIR/volume.sh" \
   --subscribe volume volume_change
 
-# 3. Battery
+# 3. Bluetooth
+sketchybar --add item bluetooth right \
+  --set bluetooth icon=󰂯 \
+  icon.color=$SAKURA_MUTED \
+  label.drawing=off \
+  update_freq=10 \
+  script="$PLUGIN_DIR/bluetooth.sh" \
+  click_script="open x-apple.systempreferences:com.apple.Bluetooth-Settings"
+
+# 4. Battery
 sketchybar --add item battery right \
   --set battery icon=󰁹 \
   icon.color=$HOT_PINK \
@@ -248,7 +257,7 @@ sketchybar --add bracket left_pill logo '/space\..*/' separator menu_btn front_a
   background.border_color=$PILL_BORDER
 
 # Updated right_pill to include the media module
-sketchybar --add bracket right_pill media cpu ram battery volume clock \
+sketchybar --add bracket right_pill media cpu ram battery volume bluetooth clock \
   --set right_pill background.color=$PILL_BG \
   background.corner_radius=14 \
   background.height=28 \
