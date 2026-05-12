@@ -83,6 +83,33 @@ autoload -Uz add-zsh-hook
 add-zsh-hook precmd _reset_cursor_shape
 _reset_cursor_shape() { printf '\e[2 q' }
 
+add-zsh-hook chpwd list_on_cd
+list_on_cd() { ls -F }
+
+# Function to auto-activate/deactivate venvs
+auto_python_venv() {
+  # If a venv exists in the current directory, activate it
+  if [[ -d "venv" ]]; then
+    source venv/bin/activate
+  elif [[ -d ".venv" ]]; then
+    source .venv/bin/activate
+  # If no venv is found but one is currently active, deactivate it
+  # (Optional: Only if the active venv isn't in a parent directory)
+  elif [[ -n "$VIRTUAL_ENV" ]]; then
+    # Check if we are still inside the active venv's parent directory
+    local parent_dir=$(dirname "$VIRTUAL_ENV")
+    if [[ "$PWD" != "$parent_dir"* ]]; then
+      deactivate
+    fi
+  fi
+}
+
+# Register the function to run on directory change (chpwd)
+add-zsh-hook chpwd auto_python_venv
+
+# Run it once on shell startup in case you start in a venv directory
+auto_python_venv
+
 # Load private local configurations if they exist
 if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
