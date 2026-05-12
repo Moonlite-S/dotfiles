@@ -18,7 +18,6 @@ if [ ${#WINDOW_TITLE} -gt 50 ]; then
   WINDOW_TITLE="${WINDOW_TITLE:0:50}..."
 fi
 
-# Format the output
 # If the title is empty or exactly the same as the app name, just show the app name
 if [ "$APP_NAME" == "$WINDOW_TITLE" ] || [ -z "$WINDOW_TITLE" ]; then
   FINAL_LABEL="$APP_NAME"

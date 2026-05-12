@@ -109,12 +109,13 @@ for i in "${!SPACE_ICONS[@]}"; do
     icon.color=$SAKURA_MUTED \
     icon.highlight_color=$HOT_PINK \
     label.drawing=off \
+    click_script="/opt/homebrew/bin/yabai -m space --focus $sid" \
     background.color=$SAKURA_MUTED \
     background.corner_radius=8 \
     background.height=22 \
     background.drawing=off \
     script="$PLUGIN_DIR/space.sh" \
-    --subscribe space.$sid space_change
+    --subscribe space.$sid space_change mouse.entered mouse.exited
 done
 
 sketchybar --add item separator left \
@@ -122,8 +123,46 @@ sketchybar --add item separator left \
   icon.color=$TEXT_DIM \
   label.drawing=off
 
-# Re-adding the window_focus event so the title script works
+# Declare custom event before any item subscribes to it
 sketchybar --add event window_focus
+
+################################
+#  Menu Button (App Menu)      #
+################################
+
+sketchybar --add item menu_btn left \
+  --set menu_btn \
+    icon="󰍜" \
+    icon.color=$SAKURA_PRIMARY \
+    label.drawing=off \
+    click_script="sketchybar --set menu_btn popup.drawing=toggle" \
+    script="sketchybar --set \$NAME popup.drawing=off" \
+    popup.background.color=0xdd1A161E \
+    popup.background.border_color=$PILL_BORDER \
+    popup.background.border_width=1 \
+    popup.background.corner_radius=12 \
+    popup.background.shadow.drawing=on \
+    popup.background.blur_radius=20 \
+  --subscribe menu_btn mouse.exited.global
+
+for i in $(seq 1 8); do
+  sketchybar --add item "menu_btn.$i" popup.menu_btn \
+    --set "menu_btn.$i" \
+      icon.drawing=off \
+      label.font="JetBrainsMono Nerd Font:Medium:13.0" \
+      label.color=$TEXT_MAIN \
+      label.padding_left=14 \
+      label.padding_right=18 \
+      drawing=off \
+      click_script="$PLUGIN_DIR/menu_click.sh"
+done
+
+# Hidden updater — fires menu_bar.sh on app/window switch
+sketchybar --add item menu_updater left \
+  --set menu_updater \
+    drawing=off \
+    script="$PLUGIN_DIR/menu_bar.sh" \
+  --subscribe menu_updater front_app_switched window_focus
 
 sketchybar --add item front_app left \
   --set front_app icon="❯" \
@@ -201,7 +240,7 @@ sketchybar --add item media right \
 #  BRACKETS (The Big Pills)    #
 ################################
 
-sketchybar --add bracket left_pill logo menu_icon front_menu '/space\..*/' separator front_app \
+sketchybar --add bracket left_pill logo '/space\..*/' separator menu_btn front_app \
   --set left_pill background.color=$PILL_BG \
   background.corner_radius=14 \
   background.height=28 \
@@ -219,5 +258,8 @@ sketchybar --add bracket right_pill media cpu ram battery volume clock \
 #################
 #  Final launch #
 #################
+
+# Populate menu bar items for the current front app on startup
+"$PLUGIN_DIR/menu_bar.sh" &
 
 sketchybar --update
