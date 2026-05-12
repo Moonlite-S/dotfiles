@@ -58,7 +58,12 @@ return {
         hl.WhichKeyFloat = { bg = c.bg_dark }
 
         -- Override comments to be slightly more readable against the dark BG
-        hl.Comment = { fg = "#7A738C", italic = true }
+        hl.Comment = { fg = "#A06D80", italic = true }
+
+        -- vim-illuminate: inverted — bright pink on dark bg (visible in comments)
+        hl.IlluminatedWordText = { fg = c.bg_dark, bg = "#D48686" }
+        hl.IlluminatedWordRead = { fg = c.bg_dark, bg = "#D48686" }
+        hl.IlluminatedWordWrite = { fg = c.bg_dark, bg = "#D48686" }
 
         -- Snacks Picker / Explorer
         -- Borders & titles: setting the base groups cascades to list/input/preview sub-windows
