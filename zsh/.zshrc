@@ -33,6 +33,8 @@ alias tmux="tmux -u" # Force UTF-8 for those Powerline characters
 alias reload="exec zsh"
 alias python="python3"
 alias cd="z"
+# For my Claude Code LM Studio Integration
+alias claudelm="claude --settings ~/.claude/lmstudio.settings.json"
 
 # Sketchybar & Yabai shortcuts
 alias sreload="sketchybar --reload"
@@ -89,3 +91,8 @@ fi
 eval "$(zoxide init zsh)"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/sapple/.lmstudio/bin"
+# End of LM Studio CLI section
+
