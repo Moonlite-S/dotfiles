@@ -98,34 +98,6 @@ sketchybar --add event menu_close \
   --subscribe logo mouse.exited.global \
   --set logo script="sketchybar --set \$NAME popup.drawing=off"
 
-SPACE_ICONS=("一" "二" "三" "四" "五")
-
-for i in "${!SPACE_ICONS[@]}"; do
-  sid=$((i + 1))
-
-  sketchybar --add space space.$sid left \
-    --set space.$sid space=$sid \
-    icon="${SPACE_ICONS[i]}" \
-    icon.color=$SAKURA_MUTED \
-    icon.highlight_color=$HOT_PINK \
-    label.drawing=off \
-    click_script="/opt/homebrew/bin/yabai -m space --focus $sid" \
-    background.color=$SAKURA_MUTED \
-    background.corner_radius=8 \
-    background.height=22 \
-    background.drawing=off \
-    script="$PLUGIN_DIR/space.sh" \
-    --subscribe space.$sid space_change mouse.entered mouse.exited
-done
-
-sketchybar --add item separator left \
-  --set separator icon="~" \
-  icon.color=$TEXT_DIM \
-  label.drawing=off
-
-# Declare custom event before any item subscribes to it
-sketchybar --add event window_focus
-
 ################################
 #  Menu Button (App Menu)      #
 ################################
@@ -164,6 +136,31 @@ sketchybar --add item menu_updater left \
   script="$PLUGIN_DIR/menu_bar.sh" \
   --subscribe menu_updater front_app_switched window_focus
 
+# Spaces
+
+SPACE_ICONS=("一" "二" "三" "四" "五")
+
+for i in "${!SPACE_ICONS[@]}"; do
+  sid=$((i + 1))
+
+  sketchybar --add space space.$sid left \
+    --set space.$sid space=$sid \
+    icon="${SPACE_ICONS[i]}" \
+    icon.color=$SAKURA_MUTED \
+    icon.highlight_color=$HOT_PINK \
+    label.drawing=off \
+    click_script="/opt/homebrew/bin/yabai -m space --focus $sid" \
+    background.color=$SAKURA_MUTED \
+    background.corner_radius=8 \
+    background.height=22 \
+    background.drawing=off \
+    script="$PLUGIN_DIR/space.sh" \
+    --subscribe space.$sid space_change mouse.entered mouse.exited
+done
+
+# Declare custom event before any item subscribes to it
+sketchybar --add event window_focus
+
 sketchybar --add item front_app left \
   --set front_app icon="❯" \
   icon.color=$HOT_PINK \
@@ -188,7 +185,7 @@ sketchybar --add item clock right \
   icon.color=0xff89DCEB \
   label.color=0xffF4EDEA \
   script="$PLUGIN_DIR/clock.sh" \
-  click_script="open -a 'Firefox' https://calendar.google.com" \
+  click_script="osascript -e 'tell application \"System Events\" to tell process \"ControlCenter\" to click menu bar item 2 of menu bar 1'" \
   padding_left=0 \
   padding_right=10
 
@@ -206,7 +203,14 @@ sketchybar --add item bluetooth right \
   label.drawing=off \
   update_freq=10 \
   script="$PLUGIN_DIR/bluetooth.sh" \
-  click_script="open x-apple.systempreferences:com.apple.Bluetooth-Settings"
+  click_script="open /System/Library/PreferencePanes/Bluetooth.prefPane"
+
+# VPN (Only active if on, partial credit to Ducky6944)
+sketchybar -m --add item vpn right \
+  --set vpn icon= \
+  label.drawing=off \
+  update_freq=5 \
+  script="$PLUGIN_DIR/vpn.sh"
 
 # 4. Battery
 sketchybar --add item battery right \
@@ -249,19 +253,21 @@ sketchybar --add item media right \
 #  BRACKETS (The Big Pills)    #
 ################################
 
-sketchybar --add bracket left_pill logo '/space\..*/' separator menu_btn front_app \
+sketchybar --add bracket left_pill logo menu_btn front_app \
   --set left_pill background.color=$PILL_BG \
   background.corner_radius=14 \
-  background.height=28 \
+  background.height=30 \
   background.border_width=1 \
+  blur_radius=20 \
   background.border_color=$PILL_BORDER
 
 # Updated right_pill to include the media module
 sketchybar --add bracket right_pill media cpu ram battery volume bluetooth clock \
   --set right_pill background.color=$PILL_BG \
   background.corner_radius=14 \
-  background.height=28 \
+  background.height=30 \
   background.border_width=1 \
+  blur_radius=20 \
   background.border_color=$PILL_BORDER
 
 #################
