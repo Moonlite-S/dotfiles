@@ -1,5 +1,9 @@
 #!/bin/sh
 
+HOT_PINK="0xffff8fa3"
+SAKURA_PRIMARY="0xffffb7b2"
+CONNECTED_BLUE="0xff7dc4e4"
+
 PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"
 
@@ -27,6 +31,12 @@ if [[ "$CHARGING" != "" ]]; then
   ICON=""
 fi
 
-# The item invoking this script (name $NAME) will get its icon
-# updated with the current battery status
-sketchybar --set "$NAME" icon="$ICON"
+if [ "$PERCENTAGE" -lt 20 ]; then
+  COLOR="$HOT_PINK"
+elif [ "$PERCENTAGE" -lt 80 ]; then
+  COLOR="$SAKURA_PRIMARY"
+else
+  COLOR="$CONNECTED_BLUE"
+fi
+
+sketchybar --set "$NAME" icon="$ICON" icon.color="$COLOR"

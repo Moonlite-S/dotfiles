@@ -15,7 +15,6 @@ SAKURA_PRIMARY="0xffffb7b2"
 SAKURA_MUTED="0xffe2c3c6"
 HOT_PINK="0xffff8fa3"
 TEXT_MAIN="0xffe0def4"
-TEXT_DIM="0xff908caa"
 
 ##############################
 #  Bar Configuration         #
@@ -42,8 +41,8 @@ default=(
   icon.font="JetBrainsMono Nerd Font:Bold:16.0"
   label.font="JetBrainsMono Nerd Font:Medium:13.0"
 
-  icon.color=$SAKURA_PRIMARY
-  label.color=$TEXT_MAIN
+  icon.color="$SAKURA_PRIMARY"
+  label.color="$TEXT_MAIN"
 
   # Internal spacing between items
   icon.padding_left=6
