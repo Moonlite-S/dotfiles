@@ -14,8 +14,8 @@ APP_NAME=$(echo "$WINDOW_INFO" | jq -r '.app')
 WINDOW_TITLE=$(echo "$WINDOW_INFO" | jq -r '.title')
 
 # Truncate extremely long window titles so they don't eat your entire top bar
-if [ ${#WINDOW_TITLE} -gt 50 ]; then
-  WINDOW_TITLE="${WINDOW_TITLE:0:50}..."
+if [ ${#WINDOW_TITLE} -gt 100 ]; then
+  WINDOW_TITLE="${WINDOW_TITLE:0:100}..."
 fi
 
 # If the title is empty or exactly the same as the app name, just show the app name
