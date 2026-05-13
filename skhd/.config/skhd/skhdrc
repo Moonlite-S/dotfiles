@@ -58,7 +58,7 @@ shift + cmd - d : yabai -m space --focus recent && yabai -m space recent --destr
 cmd + ctrl - n : yabai -m space --focus next
 cmd + ctrl - p : yabai -m space --focus prev
 
-# Space Navigation (four spaces per display): lalt - {1, 2, 3, 4}
+# Space Navigation (four spaces per display): lalt - {1, 2, 3, 4, 5}
 cmd - 1 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[1] ]] && yabai -m space --focus $SPACES[1]
 cmd - 2 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[2] ]] && yabai -m space --focus $SPACES[2]
 cmd - 3 : SPACES=($(yabai -m query --displays --display | jq '.spaces[]')) && [[ -n $SPACES[3] ]] && yabai -m space --focus $SPACES[3]

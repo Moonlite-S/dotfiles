@@ -55,6 +55,9 @@ return {
       opts.options.component_separators = { left = "", right = "" }
       opts.options.section_separators = { left = "", right = "" }
 
+      -- Remove the clock from the bottom-right section
+      opts.sections.lualine_z = {}
+
       return opts
     end,
   },

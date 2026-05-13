@@ -9,6 +9,21 @@ config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 12
 
 config.max_fps = 120
+config.animation_fps = 120
+
+-- Cursor: block, no blink, smooth easing (matching kitty feel)
+config.default_cursor_style = "SteadyBlock"
+config.cursor_blink_rate = 0
+config.cursor_blink_ease_in = "EaseIn"
+config.cursor_blink_ease_out = "EaseOut"
+
+-- Smooth visual bell fade (kitty-like feedback cue)
+config.visual_bell = {
+	fade_in_function = "EaseIn",
+	fade_in_duration_ms = 75,
+	fade_out_function = "EaseOut",
+	fade_out_duration_ms = 100,
+}
 
 -- Pastel pink palette matching kitty/nvim theme
 config.colors = {
@@ -21,6 +36,8 @@ config.colors = {
 
 	selection_bg = "#493B47",
 	selection_fg = "#F4EDEA",
+
+	visual_bell = "#FF8FA3",
 
 	ansi = {
 		"#2A2734", -- black
