@@ -64,15 +64,40 @@ yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
 
-# Borders Config
-borders active_color=0xffffb7b2 inactive_color=0xff494d64 width=5.0 &
+# === App-to-Space Rules ===
+yabai -m rule --add app="^Firefox$" space=1
+yabai -m rule --add app="^kitty$" space=2
+yabai -m rule --add app="^Notion$" space=3
+yabai -m rule --add app="^Discord$" space=4
+yabai -m rule --add app="^YouTube Music$" space=4
 
 # Signals
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_title_changed action="sketchybar --trigger window_focus"
 
+# Discord + YouTube Music: set 2/3 split when both are on space 4
+yabai -m signal --add event=window_created app="^YouTube Music$" action="
+  sleep 0.5
+  yabai -m window --space 4
+  DISCORD=\"\$(yabai -m query --windows | jq -r '.[] | select(.app == \"Discord\" and .space == 4).id')\"
+  if [ -n \"\$DISCORD\" ] && [ \"\$DISCORD\" != \"null\" ]; then
+    yabai -m window \"\$DISCORD\" --ratio abs:0.66
+  fi
+"
+
+# Catch-all: unknown windows → space 5
+yabai -m signal --add event=window_created action="
+  case \"\$YABAI_PROCESS_NAME\" in
+    Firefox|kitty|Notion|Discord|YouTube Music) ;;
+    *) yabai -m window --space 5 ;;
+  esac
+"
+
 # Config
 yabai -m config layout bsp
+
+# Borders Config
+borders active_color=0xffffb7b2 inactive_color=0xff494d64 width=5.0 &
 
 # Finishing Text
 echo "Yabai config loaded!"

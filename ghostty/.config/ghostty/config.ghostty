@@ -1,0 +1,41 @@
+# Pastel pink theme (matching kitty config)
+background = #171114
+foreground = #F4EDEA
+cursor-color = #FFB7B2
+cursor-text = #1E1B22
+selection-background = #493B47
+selection-foreground = #F4EDEA
+
+palette = 0=#2A2734
+palette = 1=#F28FAD
+palette = 2=#A6D189
+palette = 3=#F6C177
+palette = 4=#96CDFB
+palette = 5=#FFB7B2
+palette = 6=#89DCEB
+palette = 7=#E0DEF4
+palette = 8=#7A738C
+palette = 9=#F8B0C4
+palette = 10=#B5E890
+palette = 11=#F9D092
+palette = 12=#B5DFFD
+palette = 13=#FF8FA3
+palette = 14=#A6E3F4
+palette = 15=#F4EDEA
+
+# Opacity and blur
+background-opacity = 0.9
+background-blur = 80
+
+# Hide title bar
+macos-titlebar-style = hidden
+
+# Font
+font-family = JetBrains Nerd Font
+font-size = 12
+
+# Cursor (block, no blink)
+cursor-style = block
+cursor-style-blink = false
+
+macos-titlebar-style = hidden

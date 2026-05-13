@@ -115,6 +115,12 @@ if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
 fi
 
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:#ffb7b2,fg+:#ff8fa3
+  --color=hl:#89DCEB,hl+:#96CDFB,info:#E2C3C6,marker:#A6D189
+  --color=prompt:#FF8FA3,spinner:#CAB8EE,pointer:#CAB8EE,header:#908caa
+  --color=border:#908caa,label:#7A738C,query:#F4EDEA'
+
 eval "$(zoxide init zsh)"
 
 export PATH="$HOME/.local/bin:$PATH"
