@@ -77,8 +77,8 @@ sketchybar --add item logo left \
 
 # Clean Helper for the dropdown items
 draw_menu_item() {
-  sketchybar --add item $1 popup.logo \
-    --set $1 icon=$2 \
+  sketchybar --add item "$1" popup.logo \
+    --set "$1" icon="$2" \
     icon.color=0xffFFB7B2 \
     icon.padding_left=10 \
     label="$3" \
@@ -189,9 +189,19 @@ sketchybar --add item clock right \
   padding_left=0 \
   padding_right=10
 
+# 4. Battery
+sketchybar --add item battery right \
+  --set battery icon=󰁹 \
+  icon.color=$HOT_PINK \
+  label.drawing=off \
+  update_freq=60 \
+  script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
+
 # 2. Volume
 sketchybar --add item volume right \
   --set volume icon=󰕾 \
+  label.drawing=off \
   icon.color=$SAKURA_MUTED \
   script="$PLUGIN_DIR/volume.sh" \
   --subscribe volume volume_change
@@ -212,26 +222,20 @@ sketchybar -m --add item vpn right \
   update_freq=5 \
   script="$PLUGIN_DIR/vpn.sh"
 
-# 4. Battery
-sketchybar --add item battery right \
-  --set battery icon=󰁹 \
-  icon.color=$HOT_PINK \
-  update_freq=60 \
-  script="$PLUGIN_DIR/battery.sh" \
-  --subscribe battery system_woke power_source_change
-
 # 4. RAM
 sketchybar --add item ram right \
-  --set ram icon=󰘚 \
+  --set ram icon= \
   icon.color=$SAKURA_MUTED \
   update_freq=5 \
+  icon.padding_right=0 \
   click_script='open -a "Activity Monitor"' \
   script="$PLUGIN_DIR/ram.sh"
 
-# 5. CPU (Padding removed, it's no longer the edge)
+# 5. CPU
 sketchybar --add item cpu right \
-  --set cpu icon=󰻠 \
+  --set cpu icon= \
   icon.color=$SAKURA_PRIMARY \
+  icon.padding_right=0 \
   update_freq=2 \
   click_script='open -a "Activity Monitor"' \
   script="$PLUGIN_DIR/cpu.sh"
