@@ -6,7 +6,7 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 12
+config.font_size = 13.5
 
 config.max_fps = 120
 config.animation_fps = 120
@@ -98,9 +98,7 @@ config.window_frame = {
 }
 
 -- Transparency with strong blur (macOS)
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 80
-
-config.font_size = 13.5
 
 return config

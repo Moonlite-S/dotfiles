@@ -7,6 +7,8 @@ return {
         "RenderMarkdownCodeInline",
         "@markup.raw.block",
         "@markup.raw.block.markdown",
+        "TreesitterContext",
+        "TreesitterContextBottom",
       },
     })
   end,
