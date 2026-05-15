@@ -221,6 +221,13 @@ sketchybar -m --add item vpn right \
   update_freq=5 \
   script="$PLUGIN_DIR/vpn.sh"
 
+# Do Not Disturb
+sketchybar --add item dnd right \
+  --set dnd icon.color=$HOT_PINK \
+  label.drawing=off \
+  update_freq=5 \
+  script="$PLUGIN_DIR/dnd.sh"
+
 # 4. RAM
 sketchybar --add item ram right \
   --set ram icon= \
