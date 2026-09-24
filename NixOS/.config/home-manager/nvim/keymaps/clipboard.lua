@@ -1,0 +1,11 @@
+-- Ctrl+C to copy a visual selection, like other apps. Only needed
+-- for copy, not paste: ghostty's ctrl+c bind is "performable" (only
+-- fires when a real terminal-level text selection exists), so it
+-- passes through to Neovim as a literal <C-c> whenever you're using
+-- Vim's own keyboard-driven visual mode instead - checked
+-- ~/.config/ghostty/config.ghostty to confirm. Ctrl+V doesn't need a
+-- matching keymap here: ghostty's own ctrl+v bind is unconditional,
+-- so it always intercepts the keypress itself and pastes via a
+-- native bracketed-paste stream before Neovim ever sees a <C-v> -
+-- Neovim already handles that natively in any mode, no config needed.
+vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy selection to system clipboard' })

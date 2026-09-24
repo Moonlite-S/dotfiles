@@ -1,0 +1,11 @@
+-- scope.nvim: gives each tabpage (nvim/keymaps/tabs.lua) its own
+-- buffer list by toggling `buflisted` on TabEnter/TabLeave/
+-- TabClosed/TabNewEntered, rather than one global list shared
+-- across every tab. bufferline.lua's default "buffers" mode already
+-- filters by buflisted, so it (and :ls, mini.pick's buffer picker)
+-- automatically shows only the current tab's buffers with no extra
+-- config here. Commands: ScopeSaveState/ScopeLoadState (manual
+-- persist/restore of the per-tab layout - separate from
+-- mini.sessions), ScopeMoveBuf (move current buffer to another tab's
+-- scope), ScopeList (debug: show all tabs' scoped buffers).
+require('scope').setup({})

@@ -1,0 +1,15 @@
+-- bufferline.nvim: buffer tabs at the top. Not a mini.nvim module -
+-- mini.tabline (used here previously) explicitly documents that it
+-- doesn't support custom buffer order, and no other mini.nvim module
+-- covers pinning/reordering either, so this covers what mini.nvim
+-- can't. Defaults are enough: icons work via the mini.icons mock,
+-- pin/move behavior (pinned buffers stay leftmost, excluded from
+-- moves) is built in, and so is `show_tab_indicators` - once 2+ tabs
+-- are open it draws small clickable per-tab markers on the right of
+-- the buffer list (confirmed in source: ui.lua's get_tab_indicator,
+-- on by default) - this is LazyVim's own setup too (plain
+-- mode = "buffers", verified against its lua/lazyvim/plugins/ui.lua),
+-- so buffers stay on the bar and tabs get a free glanceable counter,
+-- no mode switch needed. Keymaps in keymaps/buffers.lua (buffers) and
+-- keymaps/tabs.lua (tabs - native :tabnew/etc, not bufferline).
+require('bufferline').setup({})
