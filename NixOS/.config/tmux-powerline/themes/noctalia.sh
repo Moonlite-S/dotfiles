@@ -1,14 +1,23 @@
 # ==============================================================================
 # Noctalia Theme - Dynamic
-# Pulls colors live from the @noctalia_* tmux options on every status refresh,
-# so the status bar always matches the current Noctalia palette.
-# ==============================================================================
+# Reads colors straight from tmux/themes/noctalia.conf on disk on every status
+# refresh, so the status bar always matches the current Noctalia palette.
+#
+# Deliberately NOT read via `tmux show-option -g`: that reflects tmux's live
+# global-option table, which only updates when something runs `source-file`.
+# Noctalia's wallpaper-change watcher re-renders this file automatically but
+# doesn't reliably push a live `source-file` into already-running sessions
+# (only its manual "reapply" path in Settings does), so reading the table
+# left the bar stuck on whatever palette was active when the session/server
+# started. Reading the file directly means this theme self-updates on its
+# own every refresh, independent of that.
 
 # -- Dynamic Palette Lookup --
-# Load all Noctalia palette options from tmux in one call and turn them into
-# shell variables (noctalia_surface, noctalia_primary, ...).
-# Fallbacks below keep the theme working even if an option is unset.
-eval "$(tmux show-option -g 2>/dev/null | sed -n 's/^@\(noctalia_[A-Za-z_0-9]*\) "\([^"]*\)"$/\1=\x27\2\x27/p')"
+# Load all Noctalia palette values from the rendered theme file and turn them
+# into shell variables (noctalia_surface, noctalia_primary, ...).
+# Fallbacks below keep the theme working even if the file is missing/empty.
+NOCTALIA_THEME_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/themes/noctalia.conf"
+eval "$(sed -n 's/^set -gq @\(noctalia_[A-Za-z_0-9]*\) "\(.*\)"$/\1=\x27\2\x27/p' "$NOCTALIA_THEME_FILE" 2>/dev/null)"
 
 BG_BASE="${noctalia_surface_container_low:-#181d18}"
 FG_MAIN="${noctalia_on_surface:-#dfe4dc}"
@@ -68,6 +77,15 @@ if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
     "#[fg=$FG_DIM,bg=default] $TMUX_POWERLINE_SEPARATOR_LEFT_THIN #[fg=$FG_DIM,bg=default] #I #W $TMUX_POWERLINE_SEPARATOR_RIGHT_THIN "
   )
 fi
+
+# tmux-powerline only bakes these two options in via a `session-created`
+# hook (vendored lib/powerline.sh:init_powerline(), read-only) — so
+# without this they stay frozen at whatever they were when the last new
+# session was created. Push them ourselves too, on the same cadence this
+# file already gets re-sourced on for the left/right segments above
+# (every status-interval), so the window list self-updates as well.
+tmux set-option -g window-status-current-format "$(printf '%s' "${TMUX_POWERLINE_WINDOW_STATUS_CURRENT[@]}")"
+tmux set-option -g window-status-format "$(printf '%s' "${TMUX_POWERLINE_WINDOW_STATUS_FORMAT[@]}")"
 
 # -- Layout --
 export TMUX_POWERLINE_STATUS_JUSTIFICATION="centre"
